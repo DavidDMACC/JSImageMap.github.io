@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<!--David Mueller-->
+<head>
+	<title>Game</title>
+	<style>
+		a {color:orange}
+		h1 {font-family: Arial, sans-serif;}
+		h2 {font-family: Times, serif;}
+	
+	</style>
+	
+</head>
+<body style="background-color: #92c6e8">
+	<div id="challengehead" style="font-family: Arial, sans-serif;"><h1>Iowa Challenge</h1><hr><div>
+	<div id="randquestion"></div>
+	<div id="image"><img src="controller.png" usemap="#image-map"><div>
+	<div id="randimap"><div>
+
+	<script>
+		//Declare question variables (could have used an array)
+		let q1 = "<h2>Can you click on the home button?</h2>";
+		let q2 = "<h2>Can you click on the left joystick?</h2>";
+		let q3 = "<h2>Can you click on the right joystick?</h2>";
+		let q4 = "<h2>Can you click on the left trigger & bumper?</h2>";
+		let q5 = "<h2>Can you click on the right trigger & bumper?</h2>";
+		let q6 = "<h2>Can you click on the A, B, X,and Y buttons?</h2>";
+		
+		//declare map variables (could have used an array)
+		let map1 = "<map name='image-map'><area target='' alt='H_Button' title='H_Button' href='correct.html' coords='333,291,408,225' shape='rect'><area target='' alt='L_Joystick' title='L_Joystick' href='incorrect.html' coords='89,325,194,407' shape='rect'><area target='' alt='R_Joystick' title='R_Joystick' href='incorrect.html' coords='429,391,524,468' shape='rect'><area target='' alt='L_Trigger_Bumper' title='L_Trigger_Bumper' href='incorrect.html' coords='32,64,233,211' shape='rect'><area target='' alt='R_Trigger_Bumper' title='R_Trigger_Bumper' href='incorrect.html' coords='687,184,508,38' shape='rect'><area target='' alt='A_B_X_Y' title='A_B_X_Y' href='incorrect.html' coords='498,223,681,379' shape='rect'></map> ";
+		
+		let map2 = "<map name='image-map'><area target='' alt='L_Joystick' title='L_Joystick' href='correct.html' coords='89,325,194,407' shape='rect'><area target='' alt='H_Button' title='H_Button' href='incorrect.html' coords='333,291,408,225' shape='rect'><area target='' alt='R_Joystick' title='R_Joystick' href='incorrect.html' coords='429,391,524,468' shape='rect'><area target='' alt='L_Trigger_Bumper' title='L_Trigger_Bumper' href='incorrect.html' coords='32,64,233,211' shape='rect'><area target='' alt='R_Trigger_Bumper' title='R_Trigger_Bumper' href='incorrect.html' coords='687,184,508,38' shape='rect'><area target='' alt='A_B_X_Y' title='A_B_X_Y' href='incorrect.html' coords='498,223,681,379' shape='rect'></map> ";
+		
+		let map3 = "<map name='image-map'><area target='' alt='R_Joystick' title='R_Joystick' href='correct.html' coords='429,391,524,468' shape='rect'><area target='' alt='H_Button' title='H_Button' href='incorrect.html' coords='333,291,408,225' shape='rect'><area target='' alt='L_Joystick' title='L_Joystick' href='incorrect.html' coords='89,325,194,407' shape='rect'><area target='' alt='L_Trigger_Bumper' title='L_Trigger_Bumper' href='incorrect.html' coords='32,64,233,211' shape='rect'><area target='' alt='R_Trigger_Bumper' title='R_Trigger_Bumper' href='incorrect.html' coords='687,184,508,38' shape='rect'><area target='' alt='A_B_X_Y' title='A_B_X_Y' href='incorrect.html' coords='498,223,681,379' shape='rect'></map> ";
+		
+		let map4 = "<map name='image-map'><area target='' alt='L_Trigger_Bumper' title='L_Trigger_Bumper' href='correct.html' coords='32,64,233,211' shape='rect'><area target='' alt='H_Button' title='H_Button' href='incorrect.html' coords='333,291,408,225' shape='rect'><area target='' alt='L_Joystick' title='L_Joystick' href='incorrect.html' coords='89,325,194,407' shape='rect'><area target='' alt='R_Joystick' title='R_Joystick' href='incorrect.html' coords='429,391,524,468' shape='rect'><area target='' alt='R_Trigger_Bumper' title='R_Trigger_Bumper' href='incorrect.html' coords='687,184,508,38' shape='rect'><area target='' alt='A_B_X_Y' title='A_B_X_Y' href='incorrect.html' coords='498,223,681,379' shape='rect'></map> ";
+
+		let map5 = "<map name='image-map'><area target='' alt='R_Trigger_Bumper' title='R_Trigger_Bumper' href='correct.html' coords='687,184,508,38' shape='rect'><area target='' alt='H_Button' title='H_Button' href='incorrect.html' coords='333,291,408,225' shape='rect'><area target='' alt='L_Joystick' title='L_Joystick' href='incorrect.html' coords='89,325,194,407' shape='rect'><area target='' alt='R_Joystick' title='R_Joystick' href='incorrect.html' coords='429,391,524,468' shape='rect'><area target='' alt='L_Trigger_Bumper' title='L_Trigger_Bumper' href='incorrect.html' coords='32,64,233,211' shape='rect'><area target='' alt='A_B_X_Y' title='A_B_X_Y' href='incorrect.html' coords='498,223,681,379' shape='rect'></map> ";
+
+		let map6 = "<map name='image-map'><area target='' alt='A_B_X_Y' title='A_B_X_Y' href='correct.html' coords='498,223,681,379' shape='rect'><area target='' alt='H_Button' title='H_Button' href='incorrect.html' coords='333,291,408,225' shape='rect'><area target='' alt='L_Joystick' title='L_Joystick' href='incorrect.html' coords='89,325,194,407' shape='rect'><area target='' alt='R_Joystick' title='R_Joystick' href='incorrect.html' coords='429,391,524,468' shape='rect'><area target='' alt='L_Trigger_Bumper' title='L_Trigger_Bumper' href='incorrect.html' coords='32,64,233,211' shape='rect'><area target='' alt='R_Trigger_Bumper' title='R_Trigger_Bumper' href='incorrect.html' coords='687,184,508,38' shape='rect'></map> ";
+
+		//Generate Random Number 1-6
+		let randq = Math.floor(Math.random()*10)%6+1;
+		
+		console.log(randq);
+		//Change Question and Image Map based on random number (using an array would have eliminated if/else if statements)
+		if (randq == 1){
+			document.getElementById('randquestion').innerHTML = q1;
+			document.getElementById('randimap').innerHTML = map1;
+		} else if (randq == 2) {
+			document.getElementById('randquestion').innerHTML = q2;	
+			document.getElementById('randimap').innerHTML = map2;			
+		} else if (randq == 3) {
+			document.getElementById('randquestion').innerHTML = q3;	
+			document.getElementById('randimap').innerHTML = map3;			
+		} else if (randq == 4) {
+			document.getElementById('randquestion').innerHTML = q4;	
+			document.getElementById('randimap').innerHTML = map4;			
+		} else if (randq == 5) {
+			document.getElementById('randquestion').innerHTML = q5;	
+			document.getElementById('randimap').innerHTML = map5;			
+		} else if (randq == 6) {
+			document.getElementById('randquestion').innerHTML = q6;	
+			document.getElementById('randimap').innerHTML = map6;			
+		}
+	
+	</script>
+
+	
+</body>
+</html>
